@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UI & Visual")]
     public GameObject nightOverlay;
+    public GameObject dayMusic;
+    public GameObject nightMusic;
     public GameObject dayClock;
     public GameObject nightClock;
     public GameObject resultScreen;
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
     public void StartDay()
     {
         isNight = false;
+        nightMusic.SetActive(false);
+        dayMusic.SetActive(true);
         workDone = false;
         nightClock.SetActive(false);
         dayClock.SetActive(true);
@@ -48,6 +52,8 @@ public class GameManager : MonoBehaviour
     {
         workDone = true;
         isNight = true;
+        nightMusic.SetActive(true);
+        dayMusic.SetActive(false);
         nightClock.SetActive(true);
         dayClock.SetActive(false);
         nightOverlay.SetActive(true);
