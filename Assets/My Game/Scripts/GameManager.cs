@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour
 
     [Header("UI & Visual")]
     public GameObject nightOverlay;
+    public GameObject dayClock;
+    public GameObject nightClock;
     public GameObject resultScreen;
     public TextMeshProUGUI scoreText;
     public GameObject nextDayButton; // Referência ao botão "Continuar"
+    public GameObject endButton;
 
     [Header("Estado")]
     public bool isNight = false;
@@ -31,6 +34,8 @@ public class GameManager : MonoBehaviour
     {
         isNight = false;
         workDone = false;
+        nightClock.SetActive(false);
+        dayClock.SetActive(true);
         dailyScore = 0;
 
         nightOverlay.SetActive(false);
@@ -43,6 +48,8 @@ public class GameManager : MonoBehaviour
     {
         workDone = true;
         isNight = true;
+        nightClock.SetActive(true);
+        dayClock.SetActive(false);
         nightOverlay.SetActive(true);
         Debug.Log("Trabalho encerrado. Noite chegou.");
     }
@@ -66,7 +73,8 @@ public class GameManager : MonoBehaviour
             scoreText.text = "FIM DE JOGO!\n\nPONTUACAO TOTAL: " + totalScore + " / 375" + "\nOBRIGADO POR JOGAR!";
 
             // Desativa o botão de "Próximo Dia" pois não há mais dias
-            if (nextDayButton != null) nextDayButton.SetActive(false);
+            nextDayButton.SetActive(false);
+            endButton.SetActive(true);
         }
         else
         {
